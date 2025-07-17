@@ -49,6 +49,7 @@ window.onload = function () {
                 game.player.directionX = 0;
                 break;
             case "ArrowUp":
+                game.player.directionY = 0; 
             case "ArrowDown":
                 game.player.directionY = 0;
                 break;

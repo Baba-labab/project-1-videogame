@@ -4,8 +4,15 @@ class Game {
         this.gameContainer = document.querySelector("#game-container")
         this.gameScreen = document.querySelector("#game-screen");
         this.endScreen = document.querySelector("#end-screen");
-        this.player = null; 
-        this.height = 600;
+        this.player = new Player(
+            this.gameScreen,
+            400,
+            900,
+            100,
+            150,
+            "images/child.png"
+        );
+        this.height = 700;
         this.width = 1000;
         this.edibleMushrooms = [];
         this.poisonousMushrooms = [];
@@ -13,9 +20,11 @@ class Game {
         this.lives = 5;
         this.gameOver = false;
         this.gameIntervalId = null;
-        this.gameLoopFrequency = Math.floor(1000 / 60);
+        this.gameLoopFrequency = Math.floor(1000 / 30);
         this.backgroundX = 0;
-
+        this.edibleMushroomId = null;
+        this.poisonMushroomId = null;
+        this.counter = 0;
     }
 
     start() {
@@ -31,40 +40,71 @@ class Game {
             this.gameLoop()
         }, this.gameLoopFrequency);
 
+        //  setInterval(() => {
+        //     this.generateEdibleMushroom()
+        // }, 5000);
+
+        // setInterval(() => {
+        //     this.generatePoisonMushroom()
+        // }, 3000);
+
     }
 
     scrollBackground() {
-        this.backgroundX -= 2;
+        this.backgroundX -= 1;
         document.querySelector("#background").style.backgroundPositionX = `${this.backgroundX}px`
     }
 
     gameLoop() {
-
-        this.scrollBackground();
+        this.counter++
+        this.scrollBackground(); 
 
         this.update();
 
         if (this.gameOver === true) {
             clearInterval(this.gameIntervalId);
         }
+        if(this.counter % 100 === 0) {
+            this.generateEdibleMushroom()
+        }
+        if(this.counter % 80 === 0) {
+            this.generatePoisonMushroom()
+        }
+        console.log(this.edibleMushrooms)
+    }
 
+    generateEdibleMushroom() {
+        const chanterelle = new Mushroom(this.gameScreen, 50, 50, "images/chanterelle.jpg");
+        this.edibleMushrooms.push(chanterelle);
+    }
+
+    generatePoisonMushroom() {
+        const flyAgaric = new Mushroom(this.gameScreen, 50, 50, "images/fly_agaric.png");
+
+        this.poisonousMushrooms.push(flyAgaric);
     }
 
     update() {
 
-        this.player.move(); 
+        this.player.move();
 
-         //randomly generate new obstacle if no other obstacle is on sceen
-        if (Math.random() > 0.98 && this.obstacles.length < 1) {
-            this.obstacles.push(new Obstacle(this.gameScreen));
-        }
+        //move mushrooms
+       
+
+        //check collision
+
+        //remove mushrooms that left screen or collided
 
 
     }
 
     endGame() {
-        this.gameContainer.style.display = "none"; 
-        this.endScreen.style.display = "block"; 
+        this.gameContainer.style.display = "none";
+        this.endScreen.style.display = "block";
+
+
+
+        //show score
 
     }
 }
