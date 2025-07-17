@@ -12,26 +12,40 @@
     <main>
         <div id="start-screen">
             <h1>Mushroom Hunting</h1>
+            <p>Do you know which mushrooms are edible and which ones poisonous? Pick only the good ones!</p>
+            <p>Use arrow up, arrow down and arrow right to move</p>
             <button id="start-btn">Start Playing</button>
-
-
         </div>
+
         <div id="game-container">
 
-            <div id="game-screen"></div>
+            <div id="heads-up-display">
+                <div id="time">TIME</div>
+                <div id="lives">LIVES</div>
+                <div id="score" class="score-display">SCORE</div>
+            </div>
+
+            <div id="game-screen">
+                <div id="background"></div>
+            </div>
+            
+
+
         </div>
 
         <div id="end-screen">
-
+            <p>Your Final Score<br>
+                <span class="score-display">SCORE</span>
+            </p>
             <button id="restart-btn">Restart</button>
         </div>
 
 
     </main>
 
-    <script type="text/javascript" src="js/game.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-    <script type="text/javascript" src="js/components.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="game.js"></script>
+    <script type="text/javascript" src="components.js"></script>
 
 </body>
 

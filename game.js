@@ -1,13 +1,12 @@
 class Game {
     constructor() {
-        this.startScreen = document.querySelector("start-screen");
-        this.gameScreen = document.querySelector("game-screen");
-        this.endScreen = document.querySelector("end-screen");
-        this.player = new Player(
-
-        )
-        this.height = 800;
-        this.width = 1280;
+        this.startScreen = document.querySelector("#start-screen");
+        this.gameContainer = document.querySelector("#game-container")
+        this.gameScreen = document.querySelector("#game-screen");
+        this.endScreen = document.querySelector("#end-screen");
+        this.player = null; 
+        this.height = 600;
+        this.width = 1000;
         this.edibleMushrooms = [];
         this.poisonousMushrooms = [];
         this.score = 0;
@@ -26,7 +25,7 @@ class Game {
         this.gameScreen.style.overflow = "hidden";
 
         this.startScreen.style.display = "none";
-        this.gameScreen.style.display = "block";
+        this.gameContainer.style.display = "flex";
 
         this.gameIntervalId = setInterval(() => {
             this.gameLoop()
@@ -36,7 +35,7 @@ class Game {
 
     scrollBackground() {
         this.backgroundX -= 2;
-        document.querySelector("background").style.backgroundPositionX = `${this.backgroundX}px`
+        document.querySelector("#background").style.backgroundPositionX = `${this.backgroundX}px`
     }
 
     gameLoop() {
@@ -53,9 +52,19 @@ class Game {
 
     update() {
 
+        this.player.move(); 
+
+         //randomly generate new obstacle if no other obstacle is on sceen
+        if (Math.random() > 0.98 && this.obstacles.length < 1) {
+            this.obstacles.push(new Obstacle(this.gameScreen));
+        }
+
+
     }
 
     endGame() {
+        this.gameContainer.style.display = "none"; 
+        this.endScreen.style.display = "block"; 
 
     }
 }

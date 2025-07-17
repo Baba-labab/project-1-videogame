@@ -1,11 +1,62 @@
-/*
+body {
+  margin: 0; 
+  padding: 0;
+  text-align: center;
+}
+
+#start-screen {
+  display: block;
+  background-image: url();
+}
+
+#game-container {
+  display: none;
+  padding: 20px 0px;
+  justify-content: center;
+  flex-direction: column;
+}
+
 #background {
-  background-image: url('forest.png');
-  background-repeat: repeat-x;
-  width: 100%; wahrscheinlich weglassen, da in JS definiert
-  height: 100%;
+  background-image: url("images/game_background_4.png");
   position: absolute;
-  top: 0;
+  top: 50;
   left: 0;
-  z-index: 0; /*background layer
-} */
+  width:100%; 
+  height: 100%; 
+  background-repeat: repeat-x;
+  background-size: cover;
+  z-index: 0;
+}
+
+#heads-up-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: start;
+  padding-left: 100px; 
+  padding-right: 100px; 
+}
+
+#game-screen {
+  position: relative;
+  /* wichtig für positionierte Kinder wie #background */
+  width: 1280px;
+  /* feste Größe passend zum JS */
+  height: 800px;
+  margin: 0 auto;
+  /* zentriert den Bereich horizontal */
+  overflow: hidden;
+  /* verhindert, dass etwas rausläuft */
+  z-index: 1;
+}
+
+#end-screen {
+  display: none;
+}
+
+body button {
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+}
