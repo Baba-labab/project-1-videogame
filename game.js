@@ -18,6 +18,7 @@ class Game {
         this.poisonousMushrooms = [];
         this.score = 0;
         this.lives = 5;
+        this.remainingTime = 120;
         this.gameOver = false;
         this.gameIntervalId = null;
         this.gameLoopFrequency = Math.floor(1000 / 30);
@@ -57,29 +58,29 @@ class Game {
 
     gameLoop() {
         this.counter++
-        this.scrollBackground(); 
+        this.scrollBackground();
 
         this.update();
 
         if (this.gameOver === true) {
             clearInterval(this.gameIntervalId);
         }
-        if(this.counter % 100 === 0) {
+        if (this.counter % 100 === 0) {
             this.generateEdibleMushroom()
         }
-        if(this.counter % 80 === 0) {
+        if (this.counter % 80 === 0) {
             this.generatePoisonMushroom()
         }
-        console.log(this.edibleMushrooms)
+        //console.log(this.edibleMushrooms)
     }
 
     generateEdibleMushroom() {
-        const chanterelle = new Mushroom(this.gameScreen, 50, 50, "images/chanterelle.jpg");
+        const chanterelle = new Mushroom(this.gameScreen, "images/Steinpilz.jpg");
         this.edibleMushrooms.push(chanterelle);
     }
 
     generatePoisonMushroom() {
-        const flyAgaric = new Mushroom(this.gameScreen, 50, 50, "images/fly_agaric.png");
+        const flyAgaric = new Mushroom(this.gameScreen, "images/fly_agaric.png");
 
         this.poisonousMushrooms.push(flyAgaric);
     }
@@ -88,19 +89,55 @@ class Game {
 
         this.player.move();
 
-        //move mushrooms
-       
+        //move mushrooms, check collision, remove, count score and lives
+        for (let i = 0; i < this.edibleMushrooms.length; i++) {
+            let chanterelle = this.edibleMushrooms[i];
+            chanterelle.move();
 
-        //check collision
+            if (this.player.didCollide(chanterelle)) {
+                this.score++;
+                chanterelle.element.remove();
+                this.edibleMushrooms.splice(i, 1);
+                i--;
+            } else if (chanterelle.right > this.right) {
+                chanterelle.element.remove();
+                this.edibleMushrooms.splice(i, 1);
+                i--;
+            }
+        }
+        for (let i = 0; i < this.poisonousMushrooms.length; i++) {
+            let flyAgaric = this.poisonousMushrooms[i];
+            flyAgaric.move();
 
-        //remove mushrooms that left screen or collided
+            if (this.player.didCollide(flyAgaric)) {
+                this.lives--;
+                flyAgaric.element.remove();
+                this.poisonousMushrooms.splice(i, 1);
+                i--;
+            } else if (flyAgaric.right > this.right) {
+                flyAgaric.element.remove();
+                this.poisonousMushrooms.splice(i, 1);
+                i--;
+            }
+        }
 
+        if (this.lives === 0 || this.score === 10 || this.remainingTime === 0) {
+            this.endGame();
+        }
 
     }
 
     endGame() {
         this.gameContainer.style.display = "none";
         this.endScreen.style.display = "block";
+
+        if (this.lives === 0) {
+            document.querySelector("#final-message").innerText = "Be careful, you picked too many poisonous mushrooms! Try again!"
+        } else if (this.remainingTime === 0) {
+            document.querySelector("#final-message").innerText = `You had a realxing stroll and picked ${this.score} mushrooms! Want to try again for some more?`;
+        } else {
+            document.querySelector("#final-message").innerText = `Congratulations! Your basket is full of chanterelles. You can cook yourself a delicious mushroom dish!`
+        }
 
 
 

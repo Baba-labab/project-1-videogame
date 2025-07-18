@@ -63,23 +63,35 @@ class Player extends Components {
 
     }
 
-    didCollide() {
+    didCollide(mushroom) {
+        const playerRect = this.element.getBoundingClientRect();
+        const obstacleRect = mushroom.element.getBoundingClientRect();
 
+        if (
+            playerRect.left < obstacleRect.right &&
+            playerRect.right > obstacleRect.left &&
+            playerRect.top < obstacleRect.bottom &&
+            playerRect.bottom > obstacleRect.top
+        ) {
+            console.log("Found one!");
+            return true;
+        } else {
+            return false;
+        }
     }
-
 }
 
+
+
 class Mushroom extends Components {
-    constructor(gameScreen, width, height, imgScr) {
-
-        const randomTop = Math.floor(Math.random() * 400 + 150);
-        const startRight = 0;
-
-        super(gameScreen, randomTop, startRight, width, height, imgScr)
+    constructor(gameScreen, imgScr) {
+        super(gameScreen, Math.floor(Math.random() * 480 + 250), 0, 50, 50, imgScr)
+        //this.randomTop = ;
+        //this.startRight = 0;
     }
 
     move() {
-        this.right -= 2;
+        this.right += 2;
 
         this.updatePosition();
     }
