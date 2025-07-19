@@ -9,10 +9,12 @@ class Components {
 
         this.element.src = imgScr;
         this.element.style.position = "absolute";
+        this.element.style.zIndex = "5"; 
         this.element.style.height = `${this.height}px`;
         this.element.style.width = `${this.width}px`;
         this.element.style.top = `${this.top}px`;
         this.element.style.right = `${this.right}px`;
+        
 
         this.gameScreen.appendChild(this.element);
 
@@ -51,8 +53,8 @@ class Player extends Components {
             this.right = this.gameScreen.offsetWidth - this.width - 10
         }
         //bottom
-        if (this.top > this.gameScreen.offsetHeight - this.height - 100) {
-            this.top = this.gameScreen.offsetHeight - this.height - 100
+        if (this.top > this.gameScreen.offsetHeight - this.height - 60) {
+            this.top = this.gameScreen.offsetHeight - this.height - 60
         }
 
         //create boolean value for movement (condition for scrolling background)
@@ -71,13 +73,14 @@ class Player extends Components {
             playerRect.left < obstacleRect.right &&
             playerRect.right > obstacleRect.left &&
             playerRect.top < obstacleRect.bottom &&
-            playerRect.bottom > obstacleRect.top
+            playerRect.bottom > obstacleRect.top 
         ) {
             console.log("Found one!");
             return true;
         } else {
             return false;
         }
+
     }
 }
 
@@ -85,15 +88,17 @@ class Player extends Components {
 
 class Mushroom extends Components {
     constructor(gameScreen, imgScr) {
-        super(gameScreen, Math.floor(Math.random() * 480 + 250), 0, 50, 50, imgScr)
+        super(gameScreen, Math.floor(Math.random() * 400 + 250), 0, 50, 50, imgScr)
         //this.randomTop = ;
         //this.startRight = 0;
     }
 
     move() {
-        this.right += 2;
+        this.right += 3;
 
         this.updatePosition();
     }
+
+
 
 }

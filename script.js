@@ -13,6 +13,8 @@ window.onload = function () {
     startGame()
   });
 
+
+
   function handleKeyDown(event) {
     const key = event.key;
     const possibleKeyStrokes = [
@@ -28,16 +30,16 @@ window.onload = function () {
       //update player's directionX and Y based on key pressed: 
       switch (key) {
         case "ArrowLeft":
-          game.player.directionX = 0;
+          game.player.directionX = +2;
           break;
         case "ArrowUp":
-          game.player.directionY = -1;
+          game.player.directionY = -2;
           break;
         case "ArrowRight":
-          game.player.directionX = -1;
+          game.player.directionX = -2;
           break;
         case "ArrowDown":
-          game.player.directionY = 1;
+          game.player.directionY = 2;
           break;
       }
     }
