@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css" />
     <title>Mushroom Hunting</title>
 
@@ -17,9 +22,11 @@
             <button id="start-btn">Start Playing</button>
         </div>
 
-        <div id="game-container">
 
-            <div id="heads-up-display">
+        <div id="game-container">
+           <audio id="backround-audio" src="sounds\steps-in-the-woods-01-18650.mp3"></audio>
+            <div id="heads-up-display"> 
+                
                 <div id="time">TIME 02:00</div>
                 <div id="lives">LIVES</div>
                 <div id="score" class="score-display">SCORE</div>
@@ -28,16 +35,16 @@
             <div id="game-screen">
                 <div id="background"></div>
             </div>
-            
+
 
 
         </div>
 
         <div id="end-screen">
-            <p>Your Final Score<br>
+            <p><h1>Final Score</h1> <br>
                 <span class="score-display">SCORE</span>
             </p>
-            <p id = "final-message"></p>
+            <p id="final-message"></p>
             <button id="restart-btn">Restart</button>
         </div>
 

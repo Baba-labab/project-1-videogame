@@ -125,7 +125,7 @@ class Game {
 
         for (let i = 0; i < this.lives; i++) {
             const heart = document.createElement("img");
-            heart.src = "images/green_heart.jpg"
+            heart.src = "images/green_heart_freigestellt.jpg"
             heart.alt = "Heart";
             heart.width = 30;
             heart.hight = 30;
@@ -190,6 +190,7 @@ class Game {
 
         if (this.lives === 0) {
             document.querySelector("#final-message").innerText = "Be careful, you picked too many poisonous mushrooms! Try again!"
+            document.body.style.backgroundImage = "url ('images/toadstool-background.jpg')"; 
         } else if (this.remainingTime === 0) {
             document.querySelector("#final-message").innerText = `You had a realxing stroll and picked ${this.score} mushrooms! Want to try again for some more?`;
         } else {
