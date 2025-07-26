@@ -144,7 +144,6 @@ class Game {
         //move mushrooms, check collision, remove, count score and lives
         for (let i = 0; i < this.edibleMushrooms.length; i++) {
             let boletus = this.edibleMushrooms[i];
-            console.log(boletus.right)
             boletus.move();
 
             if (this.player.didCollide(boletus)) {
@@ -187,14 +186,19 @@ class Game {
         this.gameContainer.style.display = "none";
         this.endScreen.style.display = "block";
 
+        const endScreen = document.querySelector("#end-screen"); 
+        const finalMessage = document.querySelector("#final-message"); 
+
 
         if (this.lives === 0) {
-            document.querySelector("#final-message").innerText = "Be careful, you picked too many poisonous mushrooms! Try again!"
-            document.body.style.backgroundImage = "url ('images/toadstool-background.jpg')"; 
+            finalMessage.innerText = "Be careful, you picked too many poisonous mushrooms! Try again!"
+            endScreen.style.backgroundImage = "url('images/toadstool-background.jpg')"; 
         } else if (this.remainingTime === 0) {
-            document.querySelector("#final-message").innerText = `You had a realxing stroll and picked ${this.score} mushrooms! Want to try again for some more?`;
+            finalMessage.innerText = `You had a realxing stroll and picked ${this.score} mushrooms! Want to try again for some more?`;
+            endScreen.style.backgroundImage = "url('images/snail_background.jpg')"; 
         } else {
-            document.querySelector("#final-message").innerText = `Congratulations! Your basket is full of yellow boletus. You can cook yourself a delicious mushroom dish!`
+            finalMessage.innerText = `Congratulations, you picked ${this.score} mushrooms and your basket is full! You can cook yourself a delicious mushroom dish!`
+            endScreen.style.backgroundImage = "url('images/basket_background.jpg')"; 
         }
 
         //show score
