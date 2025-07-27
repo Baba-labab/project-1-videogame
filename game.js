@@ -18,7 +18,7 @@ class Game {
         this.poisonousMushrooms = [];
         this.score = 0;
         this.lives = 5;
-        this.remainingTime = 120;
+        this.remainingTime = 90;
         this.gameOver = false;
         this.gameIntervalId = null;
         this.gameLoopFrequency = Math.floor(1000 / 30);
@@ -125,7 +125,7 @@ class Game {
 
         for (let i = 0; i < this.lives; i++) {
             const heart = document.createElement("img");
-            heart.src = "images/green_heart_freigestellt.jpg"
+            heart.src = "images/freepik__upload__80113.png"
             heart.alt = "Heart";
             heart.width = 30;
             heart.hight = 30;
@@ -153,6 +153,9 @@ class Game {
                 boletus.element.remove();
                 this.edibleMushrooms.splice(i, 1);
                 i--;
+
+                let positiveSound = new Audio('sounds/yeah-96783.mp3');
+                positiveSound.play();
             } else if (boletus.right > this.right) {
                 boletus.element.remove();
                 this.edibleMushrooms.splice(i, 1);
@@ -169,6 +172,10 @@ class Game {
                 flyAgaric.element.remove();
                 this.poisonousMushrooms.splice(i, 1);
                 i--;
+
+                let negativeSound = new Audio ("sounds/e-oh-91679.mp3"); 
+                negativeSound.play(); 
+
             } else if (flyAgaric.right > this.right) {
                 flyAgaric.element.remove();
                 this.poisonousMushrooms.splice(i, 1);
@@ -186,22 +193,22 @@ class Game {
         this.gameContainer.style.display = "none";
         this.endScreen.style.display = "block";
 
-        const endScreen = document.querySelector("#end-screen"); 
-        const finalMessage = document.querySelector("#final-message"); 
+        const endScreen = document.querySelector("#end-screen");
+        const finalMessage = document.querySelector("#final-message");
 
 
         if (this.lives === 0) {
             finalMessage.innerText = "Be careful, you picked too many poisonous mushrooms! Try again!"
-            endScreen.style.backgroundImage = "url('images/toadstool-background.jpg')"; 
+            endScreen.style.backgroundImage = "url('images/end_background.jpg')";
         } else if (this.remainingTime === 0) {
             finalMessage.innerText = `You had a realxing stroll and picked ${this.score} mushrooms! Want to try again for some more?`;
-            endScreen.style.backgroundImage = "url('images/snail_background.jpg')"; 
+            endScreen.style.backgroundImage = "url('images/end_background.jpg')";
         } else {
             finalMessage.innerText = `Congratulations, you picked ${this.score} mushrooms and your basket is full! You can cook yourself a delicious mushroom dish!`
-            endScreen.style.backgroundImage = "url('images/basket_background.jpg')"; 
+            endScreen.style.backgroundImage = "url('images/background_endscreen.jpg')";
         }
 
-        //show score
+        window.mySound.pause();
 
     }
 }
