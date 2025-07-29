@@ -45,6 +45,8 @@ window.onload = function () {
           game.player.directionY = 2;
           break;
       }
+
+    game.player.startAnimation(); 
     }
   }
 
@@ -61,6 +63,9 @@ window.onload = function () {
       case "ArrowDown":
         game.player.directionY = 0;
         break;
+    }
+    if (game.player.directionX === 0 && game.player.directionY === 0) {
+      game.player.stopAnimation(); 
     }
   }
 

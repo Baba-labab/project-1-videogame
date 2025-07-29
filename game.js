@@ -8,9 +8,9 @@ class Game {
             this.gameScreen,
             400,
             900,
-            100,
-            150,
-            "images/child.png"
+            130,
+            175,
+            "sprite/Run (1).png"
         );
         this.height = 700;
         this.width = 1000;
@@ -170,8 +170,8 @@ class Game {
                 this.poisonousMushrooms.splice(i, 1);
                 i--;
 
-                let negativeSound = new Audio ("sounds/e-oh-91679.mp3"); 
-                negativeSound.play(); 
+                let negativeSound = new Audio("sounds/e-oh-91679.mp3");
+                negativeSound.play();
 
             } else if (flyAgaric.right > this.right) {
                 flyAgaric.element.remove();
@@ -180,7 +180,7 @@ class Game {
             }
         }
 
-        if (this.lives === 0 || this.score === 10 || this.remainingTime === 0) {
+        if (this.lives === 0 || this.score === 3 || this.remainingTime === 0) {
             this.endGame();
         }
 
@@ -189,30 +189,27 @@ class Game {
     endGame() {
         this.gameContainer.style.display = "none";
         this.endScreen.style.display = "flex";
+        this.endScreen.style.backgroundImage = "url('images/forest with mushrooms.jpg')"
 
-        const endScreen = document.querySelector("#end-screen");
+        //const endScreen = document.querySelector("#end-screen");
         const finalMessage = document.querySelector("#final-message");
 
 
         if (this.lives === 0) {
-             endScreen.style.backgroundImage = "url('images/end_background.jpg')";
             finalMessage.innerHTML = "Be careful, you and Little Bear picked too many poisonous mushrooms!<br> Try again!"
-           
+
         } else if (this.remainingTime === 0) {
-             endScreen.style.backgroundImage = "url('images/end_background.jpg')";
             finalMessage.innerHTML = `You and Little Bear had a realxing stroll and picked ${this.score} mushrooms!<br> Want to try again for some more?`;
-           
+
         } else {
-            endScreen.style.backgroundImage = "url('images/background_endscreen.jpg')";
-            finalMessage.innerHTML = `Congratulations, you and Little Bear picked ${this.score} mushrooms!<br> Little Bear can cook a delicious mushroom dish!`
-            
+            finalMessage.innerHTML = `Congratulations, you and Little Bear picked ${this.score} mushrooms!<br> Little Bear can cook a delicious mushroom dish!`; 
         }
 
         window.mySound.pause();
 
-        this.player.element.remove(); 
-        this.edibleMushrooms.forEach(boletus => boletus.element.remove()); 
-        this.poisonousMushrooms.forEach(flyAgaric => flyAgaric.element.remove()); 
+        this.player.element.remove();
+        this.edibleMushrooms.forEach(boletus => boletus.element.remove());
+        this.poisonousMushrooms.forEach(flyAgaric => flyAgaric.element.remove());
 
     }
 }
