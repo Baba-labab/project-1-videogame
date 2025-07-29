@@ -38,7 +38,6 @@ class Game {
         this.startScreen.style.display = "none";
         this.gameContainer.style.display = "flex";
 
-
         this.gameIntervalId = setInterval(() => {
             this.gameLoop()
         }, this.gameLoopFrequency);
@@ -109,8 +108,6 @@ class Game {
         const boletus = new Mushroom(this.gameScreen, "images/boletus.png")
 
         this.edibleMushrooms.push(boletus);
-
-
     }
 
     generatePoisonMushroom() {
@@ -154,7 +151,7 @@ class Game {
                 this.edibleMushrooms.splice(i, 1);
                 i--;
 
-                let positiveSound = new Audio('sounds/yeah-96783.mp3');
+                let positiveSound = new Audio('sounds/cartoon-yay-kurz.mp3');
                 positiveSound.play();
             } else if (boletus.right > this.right) {
                 boletus.element.remove();
@@ -191,24 +188,31 @@ class Game {
 
     endGame() {
         this.gameContainer.style.display = "none";
-        this.endScreen.style.display = "block";
+        this.endScreen.style.display = "flex";
 
         const endScreen = document.querySelector("#end-screen");
         const finalMessage = document.querySelector("#final-message");
 
 
         if (this.lives === 0) {
-            finalMessage.innerText = "Be careful, you picked too many poisonous mushrooms! Try again!"
-            endScreen.style.backgroundImage = "url('images/end_background.jpg')";
+             endScreen.style.backgroundImage = "url('images/end_background.jpg')";
+            finalMessage.innerHTML = "Be careful, you and Little Bear picked too many poisonous mushrooms!<br> Try again!"
+           
         } else if (this.remainingTime === 0) {
-            finalMessage.innerText = `You had a realxing stroll and picked ${this.score} mushrooms! Want to try again for some more?`;
-            endScreen.style.backgroundImage = "url('images/end_background.jpg')";
+             endScreen.style.backgroundImage = "url('images/end_background.jpg')";
+            finalMessage.innerHTML = `You and Little Bear had a realxing stroll and picked ${this.score} mushrooms!<br> Want to try again for some more?`;
+           
         } else {
-            finalMessage.innerText = `Congratulations, you picked ${this.score} mushrooms and your basket is full! You can cook yourself a delicious mushroom dish!`
             endScreen.style.backgroundImage = "url('images/background_endscreen.jpg')";
+            finalMessage.innerHTML = `Congratulations, you and Little Bear picked ${this.score} mushrooms!<br> Little Bear can cook a delicious mushroom dish!`
+            
         }
 
         window.mySound.pause();
+
+        this.player.element.remove(); 
+        this.edibleMushrooms.forEach(boletus => boletus.element.remove()); 
+        this.poisonousMushrooms.forEach(flyAgaric => flyAgaric.element.remove()); 
 
     }
 }

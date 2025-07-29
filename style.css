@@ -22,7 +22,10 @@ body {
 
 
 #start-screen {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
   background-image: url("images/Start_cartoonjpg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -30,7 +33,6 @@ body {
   height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
   font-size: larger;
-
 }
 
 h1 {
@@ -90,13 +92,25 @@ h1 {
 
 #end-screen {
   display: none;
-  background-color: green;
+  flex-direction: column; 
+  justify-content: start;
+  align-items: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
   font-size: larger;
+}
+
+#final-message, #start-message, #instructions {
+  background-color: white;
+  color: black; 
+  border-radius: 10px;
+  padding: 20px 30px; 
+  margin: 20px 0; 
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 #start-btn, #restart-btn {
@@ -109,6 +123,7 @@ h1 {
   font-weight: bold;
   color: black;
   background-color: white;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);  ;
 }
 
 #sound-btn {
@@ -120,4 +135,13 @@ h1 {
   font-weight: bold;
   color: black; 
   background-color: white ;
+}
+
+#arrows {
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  height: 80px; 
+  width: 105px; 
+
 }

@@ -57,9 +57,6 @@ class Player extends Components {
             this.top = this.gameScreen.offsetHeight - this.height - 60
         }
 
-        //create boolean value for movement (condition for scrolling background)
-
-        //if (movementHappened) { return true, } else { return flase }
 
         this.updatePosition();
 
@@ -89,8 +86,7 @@ class Player extends Components {
 class Mushroom extends Components {
     constructor(gameScreen, imgScr) {
         super(gameScreen, Math.floor(Math.random() * 400 + 250), 0, 50, 50, imgScr)
-        //this.randomTop = ;
-        //this.startRight = 0;
+        
     }
 
     move() {

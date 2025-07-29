@@ -17,8 +17,10 @@
     <main>
         <div id="start-screen">
             <h1>Little Mushroom Picker</h1>
-            <p>Hi, great to see you! Do you want to come pick mushrooms with me?</p>
-            <p>Use all arrows to move little bear</p>
+            <div id="start-message">Hi, great to see you!<br> 
+                Little Bear is hungry. Do you want to come pick mushrooms with him?</div>
+            <div id="instructions">Use all arrows to move Little Bear</div>
+            <div id="arrows"><img src="images/arrows.png" alt="arrows"/></div>
             <button id="start-btn">Start Playing</button>
         </div>
 
@@ -26,8 +28,8 @@
         <div id="game-container">
            <audio id="backround-audio" src="sounds\steps-in-the-woods-01-18650.mp3"></audio>
             <div id="heads-up-display"> 
-                <div><button id="sound-btn">Sound on/off</button></div>
-                <div id="time">TIME 02:00</div>
+                <div><button id="sound-btn">Sound on</button></div>
+                <div id="time">TIME 01:30</div>
                 <div id="lives">LIVES</div>
                 <div id="score" class="score-display">SCORE</div>
             </div>
@@ -36,13 +38,11 @@
                 <div id="background"></div>
             </div>
 
-
-
         </div>
 
         <div id="end-screen">
             <h1>Game Over</h1>
-            <p id="final-message"></p>
+            <div id="final-message"></div>
             <button id="restart-btn">Restart</button>
         </div>
 
