@@ -70,8 +70,8 @@ class Player extends Components {
             this.right = 10
         }
         //top
-        if (this.top < 200) {
-            this.top = 200;
+        if (this.top < 180) {
+            this.top = 180;
         }
         //right
         if (this.right > this.gameScreen.offsetWidth - this.width - 10) {

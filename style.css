@@ -23,16 +23,34 @@ body {
 
 #start-screen {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around; 
-  align-items: center;
   background-image: url("images/Start_cartoonjpg.jpg");
+}
+
+#end-screen {
+  display: none; 
+}
+
+#end-screen, #start-screen {
+  flex-direction: column; 
+  justify-content: space-around;
+  align-items: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
   font-size: larger;
+}
+
+#start-content {
+  display: flex; 
+  flex-direction: row;
+ 
+}
+
+#player > img {
+  width: 300px; 
+  height: auto;
 }
 
 h1 {
@@ -92,18 +110,6 @@ h1 {
   z-index: 1;
 }
 
-#end-screen {
-  display: none;
-  flex-direction: column; 
-  justify-content: space-around;
-  align-items: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: larger;
-}
 
 #final-message, #start-message, #instructions {
   background-color: white;
@@ -139,11 +145,22 @@ h1 {
   background-color: white ;
 }
 
-#arrows {
-  display: flex; 
-  flex-direction: column;
-  justify-content: center;
-  height: 80px; 
-  width: 105px; 
+#arrows > img {
+  height: 100px; 
+  width: auto; 
+}
 
+#end-container {
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+}
+
+#animation {
+  width: 300px; 
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 5;
 }

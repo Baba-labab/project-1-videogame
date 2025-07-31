@@ -17,17 +17,23 @@
     <main>
         <div id="start-screen">
             <h1>Little Mushroom Picker</h1>
-            <div id="start-message">Hi, great to see you!<br> 
-                Little Bear is hungry. Do you want to come pick mushrooms with him?</div>
-            <div id="instructions">Use all arrows to move Little Bear</div>
-            <div id="arrows"><img src="images/arrows.png" alt="arrows"/></div>
-            <button id="start-btn">Start Playing</button>
+            <div id="start-message">Hi, great to see you!<br>
+                I'm Bob. Do you want to come pick mushrooms with me?<br>
+                But be careful not to pick the poisonous ones!</div>
+            <div id="instructions">Use all arrow keys to move</div>
+            <div id="start-content">
+
+                <div id="player"><img src="sprite/Idle (1).png" alt="Bob" /></div>
+                <div id="text">
+                    <div id="arrows"><img src="images/arrows.png" alt="arrows" /></div>
+                    <button id="start-btn">Start Playing</button>
+                </div>
+            </div>
         </div>
 
-
         <div id="game-container">
-           <audio id="backround-audio" src="sounds\steps-in-the-woods-01-18650.mp3"></audio>
-            <div id="heads-up-display"> 
+            <audio id="backround-audio" src="sounds\steps-in-the-woods-01-18650.mp3"></audio>
+            <div id="heads-up-display">
                 <div><button id="sound-btn">Sound on</button></div>
                 <div id="time">TIME 01:30</div>
                 <div id="lives">LIVES</div>
@@ -37,13 +43,16 @@
             <div id="game-screen">
                 <div id="background"></div>
             </div>
-
         </div>
 
         <div id="end-screen">
             <h1>Game Over</h1>
             <div id="final-message"></div>
-            <button id="restart-btn">Restart</button>
+            <div id="end-container">
+                <div id="animation"></div>
+                <button id="restart-btn">Restart</button>
+            </div>
+
         </div>
 
 

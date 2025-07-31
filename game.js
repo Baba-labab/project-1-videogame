@@ -8,8 +8,8 @@ class Game {
             this.gameScreen,
             400,
             900,
-            130,
-            175,
+            177,
+            150,
             "sprite/Run (1).png"
         );
         this.height = 700;
@@ -45,17 +45,22 @@ class Game {
         this.setTimer();
 
         this.updateLivesDisplay();
-
         this.updateScoreDisplay();
 
+        let edibleInterval = 5000;
+        let poisonousInterval = 3000;
+
+        if (this.score === 3) {
+            edibleInterval = 800;
+        }
 
         this.edibleMushroomId = setInterval(() => {
             this.generateEdibleMushroom()
-        }, 5000);
+        }, edibleInterval);
 
         this.poisonMushroomId = setInterval(() => {
             this.generatePoisonMushroom()
-        }, 3000);
+        }, poisonousInterval);
 
     }
 
@@ -71,7 +76,7 @@ class Game {
 
 
             if (this.remainingTime === 0) {
-                clearInterval(timer);
+                clearInterval(this.timer);
                 this.endGame();
             }
         }, 1000);
@@ -127,7 +132,6 @@ class Game {
             heart.width = 30;
             heart.hight = 30;
             livesContainer.appendChild(heart);
-
         }
     }
 
@@ -180,7 +184,7 @@ class Game {
             }
         }
 
-        if (this.lives === 0 || this.score === 3 || this.remainingTime === 0) {
+        if (this.lives === 0 || this.score === 1 || this.remainingTime === 0) {
             this.endGame();
         }
 
@@ -189,20 +193,38 @@ class Game {
     endGame() {
         this.gameContainer.style.display = "none";
         this.endScreen.style.display = "flex";
-        this.endScreen.style.backgroundImage = "url('images/forest with mushrooms.jpg')"
+        this.endScreen.style.backgroundImage = "url('images/background_endscreen.jpg')"
 
         //const endScreen = document.querySelector("#end-screen");
         const finalMessage = document.querySelector("#final-message");
 
 
         if (this.lives === 0) {
-            finalMessage.innerHTML = "Be careful, you and Little Bear picked too many poisonous mushrooms!<br> Try again!"
+            finalMessage.innerHTML = "Be careful, you and Bob picked too many poisonous mushrooms!<br> Try again!"
 
         } else if (this.remainingTime === 0) {
-            finalMessage.innerHTML = `You and Little Bear had a realxing stroll and picked ${this.score} mushrooms!<br> Want to try again for some more?`;
+            finalMessage.innerHTML = `You and Bob had a realxing stroll and picked ${this.score} mushrooms!<br> Want to try again for some more?`;
 
         } else {
-            finalMessage.innerHTML = `Congratulations, you and Little Bear picked ${this.score} mushrooms!<br> Little Bear can cook a delicious mushroom dish!`; 
+            finalMessage.innerHTML = `Congratulations, you and Bob picked ${this.score} mushrooms!<br> He can cook a delicious mushroom dish now!`;
+
+           /* const jumpingBob = [
+                "sprite/Jump (1).png",
+                "sprite/Jump (2).png",
+                "sprite/Jump (3).png",
+                "sprite/Jump (4).png",
+                "sprite/Jump (5).png",
+                "sprite/Jump (6).png",
+                "sprite/Jump (7).png",
+                "sprite/Jump (8).png",
+                "sprite/Jump (9).png",
+                "sprite/Jump (10).png",
+                "sprite/Jump (11).png",
+                "sprite/Jump (12).png"
+            ] */
+
+            const animation = document.querySelector('#animation')
+            animation.style.backgroundImage = 'url("sprite/Jump (1).png")';
         }
 
         window.mySound.pause();
