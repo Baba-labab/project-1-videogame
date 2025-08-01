@@ -27,6 +27,23 @@ class Game {
         this.poisonMushroomId = null;
         //this.counter = 0; // only neccessary for different method for creating mushrooms
         this.timer = 0;
+        this.jumpingBobFrames = [
+            "sprite/Jump (1).png",
+            "sprite/Jump (2).png",
+            "sprite/Jump (3).png",
+            "sprite/Jump (4).png",
+            "sprite/Jump (5).png",
+            "sprite/Jump (6).png",
+            "sprite/Jump (7).png",
+            "sprite/Jump (8).png",
+            "sprite/Jump (9).png",
+            "sprite/Jump (10).png",
+            "sprite/Jump (11).png",
+            "sprite/Jump (12).png"
+        ];
+        this.animation = document.querySelector("#animation");
+        this.currentBobFrame = 0;
+        this.endAnimationInterval = null;
     }
 
     start() {
@@ -190,6 +207,20 @@ class Game {
 
     }
 
+    startEndAnimation() {
+        if (this.endAnimationInterval) return;
+
+        this.endAnimationInterval = setInterval(() => {
+            this.currentBobFrame = (this.currentBobFrame + 1) % this.jumpingBobFrames.length;
+            this.animation.style.backgroundImage = `url("${this.jumpingBobFrames[this.currentBobFrame]}")`;
+        }, 200);
+    }
+
+    stopEndAnimation() {
+        clearInterval(this.endAnimationInterval);
+        this.endAnimationInterval = null;
+    }
+
     endGame() {
         this.gameContainer.style.display = "none";
         this.endScreen.style.display = "flex";
@@ -208,23 +239,8 @@ class Game {
         } else {
             finalMessage.innerHTML = `Congratulations, you and Bob picked ${this.score} mushrooms!<br> He can cook a delicious mushroom dish now!`;
 
-           /* const jumpingBob = [
-                "sprite/Jump (1).png",
-                "sprite/Jump (2).png",
-                "sprite/Jump (3).png",
-                "sprite/Jump (4).png",
-                "sprite/Jump (5).png",
-                "sprite/Jump (6).png",
-                "sprite/Jump (7).png",
-                "sprite/Jump (8).png",
-                "sprite/Jump (9).png",
-                "sprite/Jump (10).png",
-                "sprite/Jump (11).png",
-                "sprite/Jump (12).png"
-            ] */
-
-            const animation = document.querySelector('#animation')
-            animation.style.backgroundImage = 'url("sprite/Jump (1).png")';
+            this.animation.style.backgroundImage = `url("${this.jumpingBobFrames[this.currentBobFrame]}")`;
+            this.startEndAnimation();
         }
 
         window.mySound.pause();
@@ -232,6 +248,7 @@ class Game {
         this.player.element.remove();
         this.edibleMushrooms.forEach(boletus => boletus.element.remove());
         this.poisonousMushrooms.forEach(flyAgaric => flyAgaric.element.remove());
+        clearInterval(this.timer);
 
     }
 }

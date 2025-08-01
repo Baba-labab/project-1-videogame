@@ -75,6 +75,7 @@ window.onload = function () {
 
 
   restartButton.addEventListener("click", function () {
+    game.stopEndAnimation(); 
     restartGame();
   });
 
