@@ -15,15 +15,12 @@ class Components {
         this.element.style.top = `${this.top}px`;
         this.element.style.right = `${this.right}px`;
 
-
         this.gameScreen.appendChild(this.element);
-
     }
 
     updatePosition() {
         this.element.style.right = `${this.right}px`;
         this.element.style.top = `${this.top}px`;
-
     }
 }
 
@@ -82,9 +79,7 @@ class Player extends Components {
             this.top = this.gameScreen.offsetHeight - this.height - 60
         }
 
-
         this.updatePosition();
-
     }
 
     didCollide(mushroom) {
@@ -102,24 +97,17 @@ class Player extends Components {
         } else {
             return false;
         }
-
     }
 }
-
 
 
 class Mushroom extends Components {
     constructor(gameScreen, imgScr) {
         super(gameScreen, Math.floor(Math.random() * 400 + 250), 0, 50, 50, imgScr)
-
     }
 
     move() {
         this.right += 3;
-
         this.updatePosition();
     }
-
-
-
 }
