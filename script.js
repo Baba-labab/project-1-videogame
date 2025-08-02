@@ -3,7 +3,7 @@ window.onload = function () {
   const restartButton = document.querySelector("#restart-btn")
   const soundButton = document.querySelector("#sound-btn")
   
-  window.mySound = new Audio('sounds/steps-in-the-woods-01-18650.mp3')
+  window.mySound = new Audio('sounds/forest-atmosphere-localization-poland-320813.mp3')
   mySound.volume = 0.5;
 
   function startGame() {

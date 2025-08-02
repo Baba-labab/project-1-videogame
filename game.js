@@ -18,7 +18,7 @@ class Game {
         this.poisonousMushrooms = [];
         this.score = 0;
         this.lives = 5;
-        this.remainingTime = 90;
+        this.remainingTime = 60;
         this.gameOver = false;
         //this.gameIntervalId = null;
         //this.gameLoopFrequency = Math.floor(1000 / 30);
@@ -29,8 +29,8 @@ class Game {
         //this.poisonousInterval = 3000;
         this.counter = 0; // only neccessary for different method for creating mushrooms
         this.timer = 0;
-        this.edibleRate = 100;
-        this.poisonRate = 100;
+        this.edibleRate = 200;
+        this.poisonRate = 180;
         this.jumpingBobFrames = [
             "sprite/Jump (1).png",
             "sprite/Jump (2).png",
@@ -127,8 +127,7 @@ class Game {
 
     updateDifficulty() {
         if (this.score === 5)
-            this.poisonRate = 50;
-
+            this.poisonRate = 90;
     }
 
     generateEdibleMushroom() {
@@ -205,6 +204,8 @@ class Game {
                 i--;
             }
         }
+
+        this.updateDifficulty(); 
 
         if (this.lives === 0 || this.score === 10 || this.remainingTime === 0) {
             this.endGame();
